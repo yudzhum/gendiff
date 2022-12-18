@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-from hexlet_code.cli import show_reference
+from gendiff.cli import show_reference
 
 
 def main():
