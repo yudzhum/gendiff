@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 
-from gendiff.cli import show_reference
+from gendiff.gendiff import generate_diff
 
 
 def main():
-    show_reference()
+    diff = generate_diff()
+    print(diff)
 
 
 if __name__ == '__main__':
