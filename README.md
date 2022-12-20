@@ -2,7 +2,7 @@
 [![Actions Status](https://github.com/yudzhum/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/yudzhum/python-project-50/actions)
 
 ### Github action status
-[![Github Actions Status](https://github.com/hexlet-boilerplates/python-package/workflows/Python%20CI/badge.svg)](https://github.com/hexlet-boilerplates/python-package/actions)
+[![Github Actions Status](https://github.com/yudzhum/python-project-50/actions/workflows/pyci.yml/badge.svg)](https://github.com/yudzhum/python-project-50/actions)
 
 ### Codeclimate Maintainability Badge
 [![Maintainability](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/maintainability)](https://codeclimate.com/github/yudzhum/python-project-50/maintainability)
