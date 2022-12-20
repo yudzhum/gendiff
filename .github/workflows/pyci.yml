@@ -22,7 +22,4 @@ jobs:
           pip install poetry
           make install
       - name: Run linter
-        run: |
-          pip install flake8
-          make lint
-        continue-on-error: true
+        run: make lint
