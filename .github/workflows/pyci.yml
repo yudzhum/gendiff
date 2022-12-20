@@ -25,3 +25,4 @@ jobs:
         run: |
           pip install flake8
           make lint
+        continue-on-error: true
