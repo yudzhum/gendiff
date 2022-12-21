@@ -9,4 +9,3 @@
 
 ### Example with plain json file
 [![asciicast](https://asciinema.org/a/azXe3StC8EUZgKbM6zdXH781S.svg)](https://asciinema.org/a/azXe3StC8EUZgKbM6zdXH781S)
-
