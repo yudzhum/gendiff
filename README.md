@@ -2,9 +2,6 @@
 [![Actions Status](https://github.com/yudzhum/python-project-50/workflows/hexlet-check/badge.svg)](https://github.com/yudzhum/python-project-50/actions)
 
 ### Github action status
-![Github Actions Status](https://github.com/yudzhum/python-project-50/actions/workflows/test-and-linter.yml/badge.svg)
-
-### Github action status 2
 ![Github Actions Status](https://github.com/yudzhum/python-project-50/actions/workflows/check.yml/badge.svg)
 
 ### Codeclimate Maintainability Badge
