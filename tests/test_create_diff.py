@@ -1,4 +1,5 @@
 import os
+import json
 import pytest
 
 from gendiff.create_diff import generate_diff
@@ -15,13 +16,13 @@ def read(file_path):
     return result
 
 
+# source data
+plain_dict1 = json.load(read(get_fixture_path('file1.json')))
+plain_dict2 = json.load(read(get_fixture_path('file2.json')))
 
 # expected result
-plain_data = read(get_fixture_path('plain.txt'))
-print(plain_data)  
+plain_expected = read(get_fixture_path('plain.txt')) 
 
 
-
-
-
-# Namespace(first_file='file1.json', format=None, second_file='file2.json')
+def test_plain():
+    assert generate_diff(plain_dict1, plain_dict2) == plain_expected
