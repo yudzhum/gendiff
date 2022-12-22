@@ -4,6 +4,9 @@
 ### Github action status
 ![Github Actions Status](https://github.com/yudzhum/python-project-50/actions/workflows/test-and-linter.yml/badge.svg)
 
+### Github action status 2
+![Github Actions Status](https://github.com/yudzhum/python-project-50/actions/workflows/check.yml/badge.svg)
+
 ### Codeclimate Maintainability Badge
 [![Maintainability](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/maintainability)](https://codeclimate.com/github/yudzhum/python-project-50/maintainability)
 
