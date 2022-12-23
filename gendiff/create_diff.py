@@ -13,8 +13,8 @@ def generate_diff(dict1, dict2):
                 keys1.pop(0)
                 keys2.pop(0)
             else:
-                result.append(f'- {key}:{dict1[key]}')
-                result.append(f'+ {key}:{dict2[key]}')
+                result.append(f'- {key}: {dict1[key]}')
+                result.append(f'+ {key}: {dict2[key]}')
                 keys1.pop(0)
                 keys2.pop(0)
         elif key in keys2:

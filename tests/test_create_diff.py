@@ -17,8 +17,8 @@ def read(file_path):
 
 
 # source data
-plain_dict1 = json.load(read(get_fixture_path('file1.json')))
-plain_dict2 = json.load(read(get_fixture_path('file2.json')))
+plain_dict1 = json.load(open(get_fixture_path('file1.json')))
+plain_dict2 = json.load(open(get_fixture_path('file2.json')))
 
 # expected result
 plain_expected = read(get_fixture_path('plain.txt')) 
