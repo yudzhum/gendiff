@@ -2,6 +2,12 @@ import os
 import json
 import pytest
 
+import yaml 
+try:
+    from yaml import CLoader as Loader, CDumper as Dumper
+except ImportError:
+    from yaml import Loader, Dumper
+
 from gendiff.create_diff import generate_diff
 
 
@@ -17,12 +23,17 @@ def read(file_path):
 
 
 # source data
-plain_dict1 = json.load(open(get_fixture_path('file1.json')))
-plain_dict2 = json.load(open(get_fixture_path('file2.json')))
+plain_json1 = json.load(open(get_fixture_path('file1.json')))
+plain_json2 = json.load(open(get_fixture_path('file2.json')))
+plain_yaml1 = yaml.load(open(get_fixture_path('plain_yaml1.yaml')), Loader=Loader)
+plain_yaml2 = yaml.load(open(get_fixture_path('plain_yaml2.yaml')), Loader=Loader)
 
 # expected result
 plain_expected = read(get_fixture_path('plain.txt')) 
 
 
-def test_plain():
-    assert generate_diff(plain_dict1, plain_dict2) == plain_expected
+def test_plain_json():
+    assert generate_diff(plain_json1, plain_json2) == plain_expected
+
+def test_plain_yaml():
+    assert generate_diff(plain_yaml1, plain_yaml2) == plain_expected
