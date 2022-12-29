@@ -10,5 +10,8 @@
 ### Test Coverage Badge
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/test_coverage)](https://codeclimate.com/github/yudzhum/python-project-50/test_coverage)
 
-### Example with plain json file
+### Example with plain json files
 [![asciicast](https://asciinema.org/a/azXe3StC8EUZgKbM6zdXH781S.svg)](https://asciinema.org/a/azXe3StC8EUZgKbM6zdXH781S)
+
+### Example with plain yaml files
+[![asciicast](https://asciinema.org/a/RgpGJ8JSWkbXeA4RH2qBBqJec.svg)](https://asciinema.org/a/RgpGJ8JSWkbXeA4RH2qBBqJec)
