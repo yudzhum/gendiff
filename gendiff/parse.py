@@ -1,16 +1,16 @@
 import argparse
 import json
 
-import yaml 
+import yaml
 try:
-    from yaml import CLoader as Loader, CDumper as Dumper
+    from yaml import CLoader as Loader
 except ImportError:
-    from yaml import Loader, Dumper
+    from yaml import Loader
 
 
 def open_file(filepath):
     """Check format, open file, return dictionary"""
-    
+
     if filepath.endswith('.json'):
         data = json.load(open(filepath))
         return data
