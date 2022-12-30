@@ -32,7 +32,7 @@ nested_json2 = json.load(open(get_fixture_path('nested_file2.json')))
 
 # expected result
 plain_expected = read(get_fixture_path('plain.txt'))
-nested_expected = read(get_fixuter_path('nested.txt'))
+nested_expected = read(get_fixture_path('nested.txt'))
 
 
 def test_plain_json():
