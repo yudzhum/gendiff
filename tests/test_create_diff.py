@@ -27,13 +27,21 @@ plain_json1 = json.load(open(get_fixture_path('file1.json')))
 plain_json2 = json.load(open(get_fixture_path('file2.json')))
 plain_yaml1 = yaml.load(open(get_fixture_path('plain_yaml1.yaml')), Loader=Loader)
 plain_yaml2 = yaml.load(open(get_fixture_path('plain_yaml2.yaml')), Loader=Loader)
+nested_json1 = json.load(open(get_fixture_path('nested_file1.json')))
+nested_json2 = json.load(open(get_fixture_path('nested_file2.json')))
 
 # expected result
-plain_expected = read(get_fixture_path('plain.txt')) 
+plain_expected = read(get_fixture_path('plain.txt'))
+nested_expected = read(get_fixuter_path('nested.txt'))
 
 
 def test_plain_json():
     assert generate_diff(plain_json1, plain_json2) == plain_expected
 
+
 def test_plain_yaml():
     assert generate_diff(plain_yaml1, plain_yaml2) == plain_expected
+
+
+def test_nested_json():
+    assert generate_diff(nested_json1, nested_json2) == nested_expected
