@@ -9,6 +9,7 @@ except ImportError:
     from yaml import Loader, Dumper
 
 from gendiff.create_diff import generate_diff
+from gendiff.formatters.stylish import stylish
 
 
 def get_fixture_path(file_name):
@@ -31,17 +32,21 @@ nested_json1 = json.load(open(get_fixture_path('nested_file1.json')))
 nested_json2 = json.load(open(get_fixture_path('nested_file2.json')))
 
 # expected result
-plain_expected = read(get_fixture_path('plain.txt'))
+plain_expected = read(get_fixture_path('plain.txt'))# .rstrip().split('\n\n\n')
 nested_expected = read(get_fixture_path('nested.txt'))
 
 
 def test_plain_json():
-    assert generate_diff(plain_json1, plain_json2) == plain_expected
+    diff = generate_diff(plain_json1, plain_json2)
+    line = stylish(diff)
+    assert line == plain_expected
 
 
 def test_plain_yaml():
-    assert generate_diff(plain_yaml1, plain_yaml2) == plain_expected
+    diff = generate_diff(plain_yaml1, plain_yaml2)
+    assert stylish(diff) == plain_expected
 
 
 def test_nested_json():
-    assert generate_diff(nested_json1, nested_json2) == nested_expected
+    diff = generate_diff(nested_json1, nested_json2)
+    assert stylish(diff) == nested_expected

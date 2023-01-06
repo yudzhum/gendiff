@@ -1,20 +1,32 @@
 
 def generate_diff(dict1, dict2):
+    """function take 2 dictionatries and return 1 diff tree"""
 
     merged = dict1.keys() | dict2.keys()
     sorted_merged = sorted(merged)
 
-    result = []
+    tree = []
     for key in sorted_merged:
+        node = {}
+        node['name'] = key
         if key not in dict1:
-            value = f'+ {key}: {dict2[key]}'
-        elif key not in dict2:  
-            value = f'- {key}: {dict1[key]}'
+            node['type'] = 'added'
+            node['value'] = dict2[key]
+        elif key not in dict2:
+            node['type'] = 'deleted'
+            node['value'] = dict1[key]
         elif dict1[key] == dict2[key]:
-            value = f'  {key}: {dict1[key]}'
+            node['type'] = 'unchanged'
+            node['value'] = dict1[key]
         else:
-            value = f'- {key}: {dict1[key]}\n+ {key}: {dict2[key]}'
-    
-        result.append(value)
+            node['type'] = 'changed'
+            if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+                children = generate_diff(dict1[key], dict2[key])
+                node['children'] = children
+            else:
+                node['value'] = dict1[key]
+                node['changed_value'] = dict2[key]
 
-    return '{\n' + '\n'.join(result) + '\n}'
+        tree.append(node)
+
+    return tree
