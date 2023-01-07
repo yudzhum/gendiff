@@ -22,7 +22,7 @@ def main():
     dict1 = parse_data(args.first_file)
     dict2 = parse_data(args.second_file)
     format = args.format
- 
+
     diff = generate_diff(dict1, dict2, format)
     print(diff)
 
