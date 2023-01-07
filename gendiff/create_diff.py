@@ -1,5 +1,7 @@
+from gendiff.formatters.stylish import stylish
 
-def generate_diff(dict1, dict2):
+
+def generate_diff_tree(dict1, dict2):
     """function take 2 dictionatries and return 1 diff tree"""
 
     merged = dict1.keys() | dict2.keys()
@@ -21,7 +23,7 @@ def generate_diff(dict1, dict2):
         else:
             node['type'] = 'changed'
             if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-                children = generate_diff(dict1[key], dict2[key])
+                children = generate_diff_tree(dict1[key], dict2[key])
                 node['children'] = children
             else:
                 node['value'] = dict1[key]
@@ -30,3 +32,10 @@ def generate_diff(dict1, dict2):
         tree.append(node)
 
     return tree
+
+
+def generate_diff(dict1, dict2, formatter=stylish):
+
+    diff_tree = generate_diff_tree(dict1, dict2)
+
+    return formatter(diff_tree)
