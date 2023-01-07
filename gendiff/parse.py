@@ -8,7 +8,7 @@ except ImportError:
     from yaml import Loader
 
 
-def open_file(filepath):
+def parse_data(filepath):
     """Check format, open file, return dictionary"""
 
     if filepath.endswith('.json'):
@@ -19,6 +19,7 @@ def open_file(filepath):
         return data
 
 
+# Delete lately
 def parse():
     """Parse argument and return two dictionaries"""
 
@@ -30,6 +31,6 @@ def parse():
     parser.add_argument('second_file')
     args = parser.parse_args()
 
-    dict1 = open_file(args.first_file)
-    dict2 = open_file(args.second_file)
+    dict1 = parse_data(args.first_file)
+    dict2 = parse_data(args.second_file)
     return dict1, dict2
