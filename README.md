@@ -21,4 +21,7 @@
 
 ### Exaple with formatter 'plain'
 [![asciicast](https://asciinema.org/a/P8UMN7H4Dg6HnoRcjePXqMutJ.svg)](https://asciinema.org/a/P8UMN7H4Dg6HnoRcjePXqMutJ)
+<<<<<<< HEAD
 
+=======
+>>>>>>> d10453f9e66abdf15f575172acb28d3a2269db75
