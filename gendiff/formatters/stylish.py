@@ -21,11 +21,11 @@ def get_status(node):
     type = node.get('type')
     if type == 'added':
         return '  + '
-    elif type == 'deleted':
+    elif type == 'removed':
         return '  - '
     elif type == 'unchanged':
         return '    '
-    elif type == 'changed':
+    elif type == 'updated':
         if is_leaf(node):
             return '  - '
     return '    '
@@ -87,7 +87,7 @@ def handler_(node, depth, replacer):
 
     value = stringify(get_value(node), depth, replacer)
 
-    if get_type(node) == 'changed':
+    if get_type(node) == 'updated':
         changed_value = stringify(get_changed_value(node), depth, replacer)
         intend = replacer * (depth - 1)
         return (f'{value}'

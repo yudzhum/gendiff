@@ -1,4 +1,5 @@
 from gendiff.formatters.stylish import stylish
+from gendiff.formatters.plain import style_to_plain
 from gendiff.parse import parse_data
 
 
@@ -16,13 +17,13 @@ def generate_diff_tree(dict1, dict2):
             node['type'] = 'added'
             node['value'] = dict2[key]
         elif key not in dict2:
-            node['type'] = 'deleted'
+            node['type'] = 'removed'
             node['value'] = dict1[key]
         elif dict1[key] == dict2[key]:
             node['type'] = 'unchanged'
             node['value'] = dict1[key]
         else:
-            node['type'] = 'changed'
+            node['type'] = 'updated'
             if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
                 children = generate_diff_tree(dict1[key], dict2[key])
                 node['children'] = children
@@ -35,10 +36,18 @@ def generate_diff_tree(dict1, dict2):
     return tree
 
 
-def generate_diff(filepath1, filepath2, formatter=stylish):
+def get_formatter(format_name):
+    formatter = stylish
+    if format_name == 'plain':
+        formatter = style_to_plain
+    return formatter
+
+
+def generate_diff(filepath1, filepath2, format_name='stylish'):
     dict1 = parse_data(filepath1)
     dict2 = parse_data(filepath2)
 
     diff_tree = generate_diff_tree(dict1, dict2)
 
+    formatter = get_formatter(format_name)
     return formatter(diff_tree)
