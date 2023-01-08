@@ -1,4 +1,5 @@
 from gendiff.formatters.stylish import stylish
+from gendiff.parse import parse_data
 
 
 def generate_diff_tree(dict1, dict2):
@@ -34,7 +35,9 @@ def generate_diff_tree(dict1, dict2):
     return tree
 
 
-def generate_diff(dict1, dict2, formatter=stylish):
+def generate_diff(filepath1, filepath2, formatter=stylish):
+    dict1 = parse_data(filepath1)
+    dict2 = parse_data(filepath2)
 
     diff_tree = generate_diff_tree(dict1, dict2)
 
