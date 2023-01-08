@@ -18,3 +18,6 @@
 
 ### Example with nested json files
 [![asciicast](https://asciinema.org/a/9jZoTUeGlj1dGGXvByfcS0MY8.svg)](https://asciinema.org/a/9jZoTUeGlj1dGGXvByfcS0MY8)
+
+### Exaple with formatter 'plain'
+[![asciicast](https://asciinema.org/a/P8UMN7H4Dg6HnoRcjePXqMutJ.svg)](https://asciinema.org/a/P8UMN7H4Dg6HnoRcjePXqMutJ)
