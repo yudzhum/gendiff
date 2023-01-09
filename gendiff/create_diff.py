@@ -38,6 +38,10 @@ def generate_diff_tree(dict1, dict2):
 
 
 def get_formatter(format_name):
+    """
+    Return formatter function
+    Choises are stylish, plain, json
+    """
     formatter = stylish
     if format_name == 'plain':
         formatter = style_to_plain
@@ -47,10 +51,17 @@ def get_formatter(format_name):
 
 
 def generate_diff(filepath1, filepath2, format_name='stylish'):
+    """
+    Take 2 files in formats: json, yaml.
+    Return diff in formats stylish, plain and json
+    """
+    # Open files and return dicitonaries
     dict1 = parse_data(filepath1)
     dict2 = parse_data(filepath2)
 
+    # Generate diff tree from two dictionaries
     diff_tree = generate_diff_tree(dict1, dict2)
 
+    # Style diff with formatter
     formatter = get_formatter(format_name)
     return formatter(diff_tree)
