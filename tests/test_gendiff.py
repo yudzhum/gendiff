@@ -1,16 +1,6 @@
 import os
-import json
-import pytest
-
-import yaml 
-try:
-    from yaml import CLoader as Loader, CDumper as Dumper
-except ImportError:
-    from yaml import Loader, Dumper
 
 from gendiff.gendiff import generate_diff
-from gendiff.formatters.stylish import stylish
-from gendiff.parse import parse_data
 
 
 def get_fixture_path(file_name):
