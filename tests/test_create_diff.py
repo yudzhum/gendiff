@@ -38,6 +38,7 @@ nested_yaml2 = get_fixture_path('nested_yaml2.yaml')
 plain_expected = read(get_fixture_path('plain.txt'))
 nested_expected = read(get_fixture_path('nested.txt'))
 formatter_plain = read(get_fixture_path('formatter_plain.txt'))
+formatter_json = read(get_fixture_path('json_expected.json'))
 
 
 def test_plain_json():
@@ -64,3 +65,9 @@ def test_formatter_plain():
     format_name = 'plain'
     diff = generate_diff(nested_json1, nested_json2, format_name)
     assert diff == formatter_plain
+
+
+def test_formatter_json():
+    format_name = 'json'
+    diff = generate_diff(nested_json1, nested_json2, format_name)
+    assert diff == formatter_json
