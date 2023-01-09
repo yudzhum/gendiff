@@ -8,7 +8,7 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
-from gendiff.create_diff import generate_diff
+from gendiff.gendiff import generate_diff
 from gendiff.formatters.stylish import stylish
 from gendiff.parse import parse_data
 
