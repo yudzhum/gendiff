@@ -8,7 +8,7 @@
  - Take configuration files in 2 formats: `json` and `yaml`
  - Show output in formats: `stylish`, `plain` and `json`. Default format: `stylish`
 
-## Usage: 
+## Usage
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
 ## Setup
