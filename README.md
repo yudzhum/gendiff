@@ -12,8 +12,8 @@
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
 ### Setup
- Clone repository
- `git clone git@github.com:yudzhum/python-project-50.git`
+ - [x] Clone repository
+ - [] `git clone git@github.com:yudzhum/python-project-50.git`
  Install poetry
  `make install`
  Install package
