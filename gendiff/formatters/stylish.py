@@ -2,7 +2,10 @@ from itertools import chain
 
 
 VALUES_TO_CONVERT = [True, False, None]
-CHANGED = '  + '
+ADDED = '  + '
+REMOVED = '  - '
+UNCHANGED = '    '
+UPDATED = '  - '
 
 
 def get_value(node):
@@ -19,16 +22,17 @@ def get_name(node):
 
 def get_status(node):
     type = node.get('type')
+    status = UNCHANGED
     if type == 'added':
-        return '  + '
+        status = ADDED
     elif type == 'removed':
-        return '  - '
+        status = REMOVED
     elif type == 'unchanged':
-        return '    '
+        status = UNCHANGED
     elif type == 'updated':
         if is_leaf(node):
-            return '  - '
-    return '    '
+            status = UPDATED
+    return status
 
 
 def get_type(node):
@@ -91,7 +95,7 @@ def handler_(node, depth, replacer):
         changed_value = stringify(get_changed_value(node), depth, replacer)
         intend = replacer * (depth - 1)
         return (f'{value}'
-                f'\n{intend}{CHANGED}{get_name(node)}: {changed_value}')
+                f'\n{intend}{ADDED}{get_name(node)}: {changed_value}')
 
     return value
 
