@@ -15,7 +15,7 @@ Take configuration files in 2 formats: `json` and `yaml`
 Show output in formats: `stylish`, `plain` and `json`. Default format: `stylish`
 
 ### Usage: 
-gendiff [-h] [-f FORMAT] first_file second_file
+`gendiff [-h] [-f FORMAT] first_file second_file`
 
 ### Example with plain json files
 [![asciicast](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y.svg)](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y)
