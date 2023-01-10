@@ -4,20 +4,20 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/maintainability)](https://codeclimate.com/github/yudzhum/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/test_coverage)](https://codeclimate.com/github/yudzhum/python-project-50/test_coverage)
 
-### Command line utility that compares two configuration files and shows a difference.
+## Command line utility that compares two configuration files and shows a difference.
  - Take configuration files in 2 formats: `json` and `yaml`
  - Show output in formats: `stylish`, `plain` and `json`. Default format: `stylish`
 
-### Usage: 
+## Usage: 
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
-### Setup
+## Setup
  Clone repository\
- `git clone git@github.com:yudzhum/python-project-50.git`
- Install poetry
- `make install`
- Install package
- `make package-install`
+ `git clone git@github.com:yudzhum/python-project-50.git`\
+ Install poetry\
+ `make install`\
+ Install package\
+ `make package-install`\
 
 ### Example with plain json files. Formatter 'stylish'
 [![asciicast](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y.svg)](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y)
