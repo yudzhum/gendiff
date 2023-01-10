@@ -9,18 +9,26 @@ UPDATED = '  - '
 
 
 def get_value(node):
+    """Get value of node"""
+
     return node.get('value')
 
 
 def get_changed_value(node):
+    """Get changed_value of node"""
+
     return node.get('changed_value')
 
 
 def get_name(node):
+    """Get name of node"""
+
     return node.get('name')
 
 
 def get_status(node):
+    """Get status mark based of node type"""
+
     type = node.get('type')
     status = UNCHANGED
     if type == 'added':
@@ -36,16 +44,26 @@ def get_status(node):
 
 
 def get_type(node):
+    """Get type of node"""
+
     return node.get('type')
 
 
 def get_children(node):
+    """
+    Return children(list) from node.
+    If object is list return list
+    """
     if isinstance(node, list):
         return node
     return node.get('children')
 
 
 def is_leaf(node):
+    """
+    Return true if object is node(dict)
+    without children
+    """
     if isinstance(node, list):
         return False
     if get_children(node):
@@ -54,6 +72,10 @@ def is_leaf(node):
 
 
 def convert(value):
+    """
+    Convert values:
+    False -> false, True -> true, None -> null
+    """
     if value is None:
         return 'null'
     return str(value).lower()

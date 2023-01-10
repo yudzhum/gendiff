@@ -1,17 +1,26 @@
+# Types of nodes
 ADDED = 'added'
 UPDATED = 'updated'
 UNCHANGED = 'unchanged'
 
 
 def get_value(node):
+    """Get value of node"""
+
     return node.get('value')
 
 
 def get_changed_value(node):
+    """Get changed_value of node"""
+
     return node.get('changed_value')
 
 
 def convert_(value):
+    """
+    Convert values to styled string
+    """
+
     result = value
     if isinstance(value, dict):
         result = '[complex value]'
@@ -25,22 +34,37 @@ def convert_(value):
 
 
 def get_name(node):
+    """
+    Return name of node,
+    if object is list return blank string
+    """
+
     if isinstance(node, list):
         return ''
     return node.get('name')
 
 
 def get_type(node):
+    """Get type of node"""
+
     return node.get('type')
 
 
 def get_children(node):
+    """
+    Return children(list) from node.
+    If object is list return list
+    """
     if isinstance(node, list):
         return node
     return node.get('children')
 
 
 def is_leaf(node):
+    """
+    Return true if object is node(dict)
+    without children
+    """
     if isinstance(node, list):
         return False
     if get_children(node):
@@ -49,6 +73,10 @@ def is_leaf(node):
 
 
 def get_values_info(node):
+    """
+    Get values info, style it based on node types.
+    Return string.
+    """
     type = get_type(node)
     result = ''
     if type == ADDED:
