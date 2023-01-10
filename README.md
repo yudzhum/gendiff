@@ -11,6 +11,14 @@
 ### Usage: 
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
+### Setup
+Clone repository
+`git clone git@github.com:yudzhum/python-project-50.git`
+Install poetry
+`make install`
+Install package
+`make package-install`
+
 ### Example with plain json files. Formatter 'stylish'
 [![asciicast](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y.svg)](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y)
 
