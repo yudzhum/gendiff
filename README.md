@@ -17,13 +17,13 @@ Show output in formats: `stylish`, `plain` and `json`. Default format: `stylish`
 ### Usage: 
 `gendiff [-h] [-f FORMAT] first_file second_file`
 
-### Example with plain json files
+### Example with plain json files. Formatter 'stylish'
 [![asciicast](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y.svg)](https://asciinema.org/a/NDAeZuyjDw54TVVtMyfAB7M1Y)
 
-### Example with plain yaml files
+### Example with plain yaml files. Formatter 'stylish'
 [![asciicast](https://asciinema.org/a/dlAKmycEUojlG7klfzRuqksXB.svg)](https://asciinema.org/a/dlAKmycEUojlG7klfzRuqksXB)
 
-### Example with nested json files
+### Example with nested json files. Formatter 'stylish'
 [![asciicast](https://asciinema.org/a/9jZoTUeGlj1dGGXvByfcS0MY8.svg)](https://asciinema.org/a/9jZoTUeGlj1dGGXvByfcS0MY8)
 
 ### Example with formatter 'plain'
