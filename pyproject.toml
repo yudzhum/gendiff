@@ -1,10 +1,18 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "Compares two configuration files and shows a difference"
 authors = ["Yuliya Dzhumanazarova <yaschick451@gmail.com>"]
-license = "free"
+license = "Free for non-commercial use"
 readme = "README.md"
+repository = "https://github.com/yudzhum/python-project-49"
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Version Control",
+]
 packages = [
   {include = "gendiff"}
 ]
