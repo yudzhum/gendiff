@@ -2,6 +2,7 @@ from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import style_to_plain
 from gendiff.parse import parse_data
 import json
+import os
 
 
 def generate_diff_tree(dict1, dict2):
@@ -50,14 +51,26 @@ def get_formatter(format_name):
     return formatter
 
 
+def get_data(filepath):
+    """
+    Open file, read data
+    Return dict
+    """
+    root, extension = os.path.splitext(filepath)
+
+    with open(f'{filepath}') as file:
+        data = parse_data(file, extension[1:])
+        return data
+
+
 def generate_diff(filepath1, filepath2, format_name='stylish'):
     """
     Take 2 files in formats: json, yaml.
     Return diff in formats stylish, plain and json
     """
     # Open files and return dicitonaries
-    dict1 = parse_data(filepath1)
-    dict2 = parse_data(filepath2)
+    dict1 = get_data(filepath1)
+    dict2 = get_data(filepath2)
 
     # Generate diff tree from two dictionaries
     diff_tree = generate_diff_tree(dict1, dict2)

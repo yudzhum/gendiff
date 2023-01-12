@@ -1,18 +1,14 @@
 import json
-
 import yaml
-try:
-    from yaml import CLoader as Loader
-except ImportError:
-    from yaml import Loader
 
 
-def parse_data(filepath):
-    """Check format, open file, return dictionary"""
+def parse_data(source_data, format):
+    """
+    Take data in formats json or yaml.
+    Return dictionary.
+    """
 
-    if filepath.endswith('.json'):
-        data = json.load(open(filepath))
-        return data
-    elif filepath.endswith('.yaml') or filepath.endswith('.yml'):
-        data = yaml.load(open(filepath), Loader=Loader)
-        return data
+    if format == "json":
+        return json.loads(source_data)
+    elif format == 'yaml' or format == 'yml':
+        return yaml.safe_load(source_data)
