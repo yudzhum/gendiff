@@ -58,8 +58,9 @@ def get_data(filepath):
     """
     root, extension = os.path.splitext(filepath)
 
-    with open(f'{filepath}') as file:
-        data = parse_data(file, extension[1:])
+    with open(f'{filepath}') as f:
+        d = f.read()
+        data = parse_data(d, extension[1:])
         return data
 
 
