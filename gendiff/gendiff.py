@@ -59,9 +59,8 @@ def get_data(filepath):
     root, extension = os.path.splitext(filepath)
 
     with open(f'{filepath}') as f:
-        d = f.read()
-        data = parse_data(d, extension[1:])
-        return data
+        data = f.read()
+        return parse_data(data, extension[1:])
 
 
 def generate_diff(filepath1, filepath2, format_name='stylish'):
