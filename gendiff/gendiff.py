@@ -1,7 +1,7 @@
 from gendiff.formatters.stylish import stylish
 from gendiff.formatters.plain import style_to_plain
+from gendiff.formatters.format_json import format_to_json
 from gendiff.parse import parse_data
-import json
 import os
 
 
@@ -38,17 +38,17 @@ def generate_diff_tree(dict1, dict2):
     return tree
 
 
-def get_formatter(format_name):
+def get_format(format_name):
     """
-    Return formatter function
+    Return format function
     Choises are stylish, plain, json
     """
-    formatter = stylish
+    format = stylish
     if format_name == 'plain':
-        formatter = style_to_plain
+        format = style_to_plain
     if format_name == 'json':
-        formatter = json.dumps
-    return formatter
+        format = format_to_json
+    return format
 
 
 def get_data(filepath):
@@ -76,5 +76,5 @@ def generate_diff(filepath1, filepath2, format_name='stylish'):
     diff_tree = generate_diff_tree(dict1, dict2)
 
     # Style diff with formatter
-    formatter = get_formatter(format_name)
-    return formatter(diff_tree)
+    format = get_format(format_name)
+    return format(diff_tree)
