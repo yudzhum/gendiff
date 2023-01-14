@@ -8,6 +8,12 @@ REMOVED = '  - '
 UNCHANGED = '    '
 UPDATED = '  - '
 
+STATUS = {
+    'added': ADDED,
+    'removed': REMOVED,
+    'unchanged': INDENT,
+}
+
 
 def to_str(value):
     """
@@ -38,23 +44,16 @@ def stylish(tree):
                 children = value.get('children')
                 lines.append(f'{current_indent}{INDENT}{key}: {iter_(children, depth + 1)}')
 
-            elif value.get('type') == 'added':
-                val = value.get('value')
-                lines.append(f'{current_indent}{ADDED}{key}: {iter_(val, depth + 1)}')
-
-            elif value.get('type') == 'unchanged':
-                val = value.get('value')
-                lines.append(f'{current_indent}{UNCHANGED}{key}: {iter_(val, depth + 1)}')
-
-            elif value.get('type') == 'removed':
-                val = value.get('value')
-                lines.append(f'{current_indent}{REMOVED}{key}: {iter_(val, depth + 1)}')
-
             elif value.get('type') == 'updated':
                 old_val = value.get('value')
                 new_val = value.get('changed_value')
                 lines.append(f'{current_indent}{REMOVED}{key}: {iter_(old_val, depth + 1)}')
                 lines.append(f'{current_indent}{ADDED}{key}: {iter_(new_val, depth + 1)}')
+
+            elif value.get('type'):
+                val = value.get('value')
+                status = value.get('type')
+                lines.append(f'{current_indent}{STATUS[status]}{key}: {iter_(val, depth + 1)}')
 
             else:
                 lines.append(f'{current_indent}{INDENT}{key}: {iter_(value, depth + 1)}')
