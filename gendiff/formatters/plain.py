@@ -14,32 +14,32 @@ def to_str(value):
 def style_to_plain(tree):
 
     lines = []
-    path = []
 
     def iter_(node, path):
 
         for key, value in node.items():
+            new_path = path + [key]
 
             if value.get('type') == 'nested':
-                new_path = path + [key]
                 children = value.get('children')
                 iter_(children, new_path)
 
-            elif value.get('type') == 'added':
+            else:
+                status = value.get('type')
                 val = value.get('value')
-                new_path = path + [key]
-                lines.append(f"Property '{'.'.join(new_path)}' was added with value: {to_str(val)}")
-
-            elif value.get('type') == 'removed':
-                new_path = path + [key]
-                lines.append(f"Property '{'.'.join(new_path)}' was removed")
-
-            elif value.get('type') == 'updated':
-                new_path = path + [key]
-                old_val = value.get('value')
                 new_val = value.get('changed_value')
-                lines.append(f"Property '{'.'.join(new_path)}' was updated. From {to_str(old_val)} to {to_str(new_val)}")
 
-        return '\n'.join(lines)
+                strings = {
+                    'added': f"Property '{'.'.join(new_path)}' was added "
+                    f"with value: {to_str(val)}",
+                    'removed': f"Property '{'.'.join(new_path)}' was removed",
+                    'unchanged': "",
+                    'updated': f"Property '{'.'.join(new_path)}' was updated. "
+                    f"From {to_str(val)} to {to_str(new_val)}",
+                }
+                lines.append(strings[status])
 
-    return iter_(tree, path)
+        result = filter(lambda x: x if x != "" else None, lines)
+        return '\n'.join(result)
+
+    return iter_(tree, path=[])
