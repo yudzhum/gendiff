@@ -11,31 +11,37 @@ def generate_diff_tree(dict1, dict2):
     merged = dict1.keys() | dict2.keys()
     sorted_merged = sorted(merged)
 
-    tree = []
+    node = {}
     for key in sorted_merged:
-        node = {}
-        node['name'] = key
         if key not in dict1:
-            node['type'] = 'added'
-            node['value'] = dict2[key]
+            node[key] = {
+                'type': 'added',
+                'value': dict2[key]
+            }
         elif key not in dict2:
-            node['type'] = 'removed'
-            node['value'] = dict1[key]
+            node[key] = {
+                'type': 'removed',
+                'value': dict1[key]
+            }
         elif dict1[key] == dict2[key]:
-            node['type'] = 'unchanged'
-            node['value'] = dict1[key]
+            node[key] = {
+                'type': 'unchanged',
+                'value': dict1[key]
+            }
+        elif isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
+            children = generate_diff_tree(dict1[key], dict2[key])
+            node[key] = {
+                'type': 'nested',
+                'children': children
+            }
         else:
-            node['type'] = 'updated'
-            if isinstance(dict1[key], dict) and isinstance(dict2[key], dict):
-                children = generate_diff_tree(dict1[key], dict2[key])
-                node['children'] = children
-            else:
-                node['value'] = dict1[key]
-                node['changed_value'] = dict2[key]
+            node[key] = {
+                'type': 'updated',
+                'value': dict1[key],
+                'changed_value': dict2[key]
+            }
 
-        tree.append(node)
-
-    return tree
+    return node
 
 
 def get_format(format_name):

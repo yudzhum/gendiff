@@ -1,26 +1,4 @@
-# Types of nodes
-ADDED = 'added'
-UPDATED = 'updated'
-UNCHANGED = 'unchanged'
-
-
-def get_value(node):
-    """Get value of node"""
-
-    return node.get('value')
-
-
-def get_changed_value(node):
-    """Get changed_value of node"""
-
-    return node.get('changed_value')
-
-
-def convert_(value):
-    """
-    Convert values to styled string
-    """
-
+def to_str(value):
     result = value
     if isinstance(value, dict):
         result = '[complex value]'
@@ -33,99 +11,35 @@ def convert_(value):
     return result
 
 
-def get_name(node):
-    """
-    Return name of node,
-    if object is list return blank string
-    """
+def style_to_plain(tree):
 
-    if isinstance(node, list):
-        return ''
-    return node.get('name')
+    lines = []
+    path = []
 
+    def iter_(node, path):
 
-def get_type(node):
-    """Get type of node"""
+        for key, value in node.items():
 
-    return node.get('type')
+            if value.get('type') == 'nested':
+                new_path = path + [key]
+                children = value.get('children')
+                iter_(children, new_path)
 
+            elif value.get('type') == 'added':
+                val = value.get('value')
+                new_path = path + [key]
+                lines.append(f"Property '{'.'.join(new_path)}' was added with value: {to_str(val)}")
 
-def get_children(node):
-    """
-    Return children(list) from node.
-    If object is list return list
-    """
-    if isinstance(node, list):
-        return node
-    return node.get('children')
+            elif value.get('type') == 'removed':
+                new_path = path + [key]
+                lines.append(f"Property '{'.'.join(new_path)}' was removed")
 
+            elif value.get('type') == 'updated':
+                new_path = path + [key]
+                old_val = value.get('value')
+                new_val = value.get('changed_value')
+                lines.append(f"Property '{'.'.join(new_path)}' was updated. From {to_str(old_val)} to {to_str(new_val)}")
 
-def is_leaf(node):
-    """
-    Return true if object is node(dict)
-    without children
-    """
-    if isinstance(node, list):
-        return False
-    if get_children(node):
-        return False
-    return True
+        return '\n'.join(lines)
 
-
-def get_values_info(node):
-    """
-    Get values info, style it based on node types.
-    Return string.
-    """
-    type = get_type(node)
-    result = ''
-    if type == ADDED:
-        result = f' with value: {convert_(get_value(node))}'
-    if type == UPDATED:
-        result = (
-            f'. From {convert_(get_value(node))} '
-            f'to {convert_(get_changed_value(node))}'
-        )
-    return result
-
-
-def concate(path, name):
-    """Remove blancks and concate path with dots"""
-
-    new_path = f'{path}.{name}'
-    return '.'.join(filter(lambda x: x, new_path.split('.')))
-
-
-def gen_string(node, path):
-    """Take node and return info as string"""
-
-    # If node was unchanged it will not show in diff
-    type = get_type(node)
-    if type == UNCHANGED:
-        return None
-
-    # Return info about node
-    name = get_name(node)
-    new_path = concate(path, name)
-    values_info = get_values_info(node)
-    string = f"Property '{new_path}' was {type}{values_info}"
-    return string
-
-
-def style_to_plain(node, path=''):
-    """Take diff tree and return diff in plain style"""
-
-    # Handle node without children
-    if is_leaf(node):
-        string = gen_string(node, path)
-        return string
-
-    # Handle node with children or children
-    children = get_children(node)
-    name = get_name(node)
-    new_path = f'{path}.{name}'
-
-    result = list(filter(
-        lambda x: x, map(lambda x: style_to_plain(x, new_path), children)
-    ))
-    return '\n'.join(result)
+    return iter_(tree, path)
