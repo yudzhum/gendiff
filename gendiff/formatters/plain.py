@@ -1,4 +1,6 @@
 def to_str(value):
+    """Style values to plain format"""
+
     result = value
     if isinstance(value, dict):
         result = '[complex value]'
@@ -12,6 +14,7 @@ def to_str(value):
 
 
 def style_to_plain(tree):
+    """Take diff tree and return formatted string"""
 
     lines = []
 
