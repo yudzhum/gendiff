@@ -1,4 +1,5 @@
 import os
+import pytest
 
 from gendiff.gendiff import generate_diff
 
@@ -31,33 +32,39 @@ formatter_plain = read(get_fixture_path('formatter_plain.txt'))
 formatter_json = read(get_fixture_path('json_expected.json'))
 
 
-def test_plain_json():
-    diff = generate_diff(plain_json1, plain_json2)
-    assert diff == plain_expected
+@pytest.mark.parametrize(
+    'file1, file2, expected',
+    [(plain_json1, plain_json2, plain_expected),
+    (plain_yaml1, plain_yaml2, plain_expected),
+    (nested_json1, nested_json2, nested_expected),
+    (nested_yaml1, nested_yaml2, nested_expected),
+    (nested_json1, nested_yaml2, nested_expected)]
+    )
+
+def test_stylish(file1, file2, expected):
+    format_name = 'stylish'
+    assert generate_diff(file1, file2, format_name) == expected
 
 
-def test_plain_yaml():
-    diff = generate_diff(plain_yaml1, plain_yaml2)
-    assert diff == plain_expected
+@pytest.mark.parametrize(
+    'file1, file2',
+    [(nested_json1, nested_json2),
+    (nested_yaml1, nested_yaml2),
+    (nested_json1, nested_yaml2)]
+    )
 
-
-def test_nested_json():
-    diff = generate_diff(nested_json1, nested_json2)
-    assert diff == nested_expected
-
-
-def test_nested_yaml():
-    diff = generate_diff(nested_yaml1, nested_yaml2)
-    assert diff == nested_expected
-
-
-def test_formatter_plain():
+def test_formatter_plain(file1, file2):
     format_name = 'plain'
-    diff = generate_diff(nested_json1, nested_json2, format_name)
-    assert diff == formatter_plain
+    assert generate_diff(file1, file2, format_name) == formatter_plain
 
 
-def test_formatter_json():
+@pytest.mark.parametrize(
+    'file1, file2',
+    [(nested_json1, nested_json2),
+    (nested_yaml1, nested_yaml2),
+    (nested_json1, nested_yaml2)]
+    )
+
+def test_formatter_json(file1, file2):
     format_name = 'json'
-    diff = generate_diff(nested_json1, nested_json2, format_name)
-    assert diff == formatter_json
+    assert generate_diff(file1, file2, format_name) == formatter_json
