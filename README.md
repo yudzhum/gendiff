@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/maintainability)](https://codeclimate.com/github/yudzhum/python-project-50/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3c46f84820c6fad359a5/test_coverage)](https://codeclimate.com/github/yudzhum/python-project-50/test_coverage)
 
-## Command line utility that compares two configuration files and shows a difference.
+## Command line utility that compares two configuration files and shows a difference. Can be used as library.
  - Take configuration files in 2 formats: `json` and `yaml`
  - Show output in formats: `stylish`, `plain` and `json`. Default format: `stylish`
 
